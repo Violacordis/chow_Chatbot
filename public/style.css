@@ -104,17 +104,18 @@ p {
 	background-color: var(--light-color);
 	border-radius: 5px;
 	overflow-wrap: break-word;
+	white-space: pre-wrap;
 }
 
 .chat-messages .message .meta {
 	font-size: 15px;
 	font-weight: bold;
 	color: var(--dark-color-b);
-	opacity: 0.7;
+	opacity: 0.9;
 	margin-bottom: 7px;
 }
 
-.chat-messages .message .meta span {
+.chat-messages .message span {
 	color: #777;
 }
 
