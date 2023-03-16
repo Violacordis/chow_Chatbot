@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
+const { text } = require('express');
 require('dotenv').config();
 
 const app = express();
@@ -16,11 +17,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Run when client connects
 io.on('connection', socket => {
     // Welcome current user
-    socket.emit('message', 'Welcome! Great to have you here. My name is ChatBot. I am here to help you.\nBelow are the options to select from:\n\nSelect 1 to place an order\nSelect 99 to checkout order\nSelect 98 to see order history\nSelect 97 to see current order\nSelect 0 to cancel order');
+    socket.emit('bot_message', `Welcome! Great to have you here. My name is Ada. <br /><br />
+    To place an order, <b>Select 1</b> 
+   <br />To see your current order, <b> Select 97</b>. 
+   <br />To see your order history, <b>Select 98</b>. 
+   <br />To checkout your order, <b>Select 99</b>. 
+   <br />To cancel, <b>Select 0</b>.`);
 
     // listen for chatMessage
-    socket.on('chatMessage', text => {
-        io.emit('message', text);
+    socket.on('chatMessage', message => {
+        io.emit('bot_message', message);
+        
     })
 })
 
