@@ -20,6 +20,7 @@ This is a restaurant chatbot that offers seamless experience to users by helping
 - When a customer selects “0”, the bot should cancel the order if there is.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ---
 
 ## Setup
@@ -56,6 +57,7 @@ This is a restaurant chatbot that offers seamless experience to users by helping
 - [My chow_chatBot base URL](https://snackhub-chatbot.onrender.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ---
 
 ## Acknowledgement
@@ -67,6 +69,7 @@ This is a restaurant chatbot that offers seamless experience to users by helping
 - Ikem Violacordis Ada
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ---
 
 
