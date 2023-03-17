@@ -100,12 +100,18 @@ io.on('connection', socket => {
             case "98":
                 // show order history
                 let orderHistory = OrderHistory.map((item) => `<p>${item.name} - ${item.price}</p>`).join('');
-                console.log(orderHistory);
-                if(orderHistory.length === 0) {
-                    socket.emit('bot_message', `You have no order history. <br/><br/> To place an order, <b>Select 1</b>`);
-                }
-                //emit message to client with order history
-                socket.emit('bot_message', `<b>Order History<b/>: <br><br/>${orderHistory}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`);
+                orderHistory = orderHistory.length === 0 ? socket.emit('bot_message', `You have no order history. <br/><br/> To place an order, <b>Select 1</b>`) : socket.emit('bot_message', `<b>Order History<b/>: <br><br/>${orderHistory}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`);
+                break;
+
+            case "97":
+                // show current order
+                let currentOrderList = currentOrder.map((item) => `<p>${item.name} - ${item.price}</p>`).join('');
+                currentOrderList = currentOrderList.length === 0 ? socket.emit('bot_message', `Your cart is empty. <br/><br/> To place an order, <b>Select 1</b>`) : socket.emit('bot_message', `<b>Current Order<b/>: <br><br/>${currentOrderList}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`);
+                // if(currentOrderList.length === 0) {
+                //     socket.emit('bot_message', `Your cart is empty. <br/><br/> To place an order, <b>Select 1</b>`);
+                // }
+                // //emit message to client with current order
+                // socket.emit('bot_message', `<b>Current Order<b/>: <br><br/>${currentOrderList}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`);
                 break;
                 
         }
