@@ -92,23 +92,21 @@ io.on('connection', socket => {
 
       case '99':
         // checkout order
-        if (currentOrder.length === 0) {
-          socket.emit(
-            'bot_message',
-            `Your cart is empty. <br/><br/> To place an order, <b>Select 1</b>`,
-          );
-        }
         //calculate total price of order
         const totalPrice = currentOrder.reduce(
           (acc, item) => acc + item.price,
           0,
         );
-        //emit message to client with total price
 
-        socket.emit(
-          'bot_message',
-          `<b>Order Checkout<b/>: <br><br/>Your total is ${totalPrice}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`,
-        );
+        currentOrder.length === 0
+          ? socket.emit(
+              'bot_message',
+              `Your cart is empty. <br/><br/> To place an order, <b>Select 1</b>`,
+            )
+          : socket.emit(
+              'bot_message',
+              `<b>Order Checkout<b/>: <br><br/>Your total is ${totalPrice}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`,
+            );
 
         //add current order to order history
         OrderHistory.push(...currentOrder);
@@ -147,7 +145,7 @@ io.on('connection', socket => {
               )
             : socket.emit(
                 'bot_message',
-                `<b>Current Order<b/>: <br><br/>${currentOrderList}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`,
+                `<b>Current Order<b/>: <br><br/>${currentOrderList}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b><br/> To cancel order, <b>Select 0</b>`,
               );
         break;
 
@@ -166,9 +164,20 @@ io.on('connection', socket => {
             `You do not have any order currently. <br/><br/> To place an order, <b>Select 1</b>`,
           );
         }
+        break;
 
+      default:
+        socket.emit(
+          'bot_message',
+          `Invalid input ❌. Please try again... <br/><br/> To place an order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`,
+        );
         break;
     }
+  });
+
+  // Runs when client disconnects
+  socket.on('disconnect', () => {
+    console.log(`user ${socket.id} disconnected`);
   });
 });
 
