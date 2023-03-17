@@ -21,6 +21,7 @@ chatForm.addEventListener('submit', (e) => {
     if (!message) {
         return false;
     }  
+    outputMessage(message);
     // Emit message to server
     socket.emit('client_Message', message);
      // clear text input field after message is sent

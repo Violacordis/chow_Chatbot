@@ -1,34 +1,34 @@
 [
     {
       "id": 91,
-      "item": "Meat pie",
+      "name": "Meat pie",
       "price": "#500"
     },
   
     {
       "id": 92,
-      "item": "Pizza",
+      "name": "Pizza",
       "price": "#2000"
     },
   
     {
       "id": 93,
-      "item": "Egg roll",
+      "name": "Egg roll",
       "price": "#300"
     },
     {
       "id": 94,
-      "item": "Burger",
+      "name": "Burger",
       "price": "#700"
     },
     {
       "id": 95,
-      "item": "Moi moi",
+      "name": "Moi moi",
       "price": "#1000"
     },
     {
       "id": 96,
-      "item": "Hamburger",
+      "name": "Hamburger",
       "price": "#1000"
     }
   ]

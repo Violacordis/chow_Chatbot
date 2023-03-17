@@ -46,7 +46,8 @@ io.on('connection', socket => {
   //track user's order history
   let orderHistory = (socket.request.session.orderHistory = []);
 
-  const botName = "chow_ChatBot"
+  const botName = "chow_ChatBot";
+  let switchExecuted = false;
 
     // Welcome current user
     socket.emit('bot_message', `Welcome! Great to have you here. My name is ${botName}... <br/><br/> Select any of the options below by selecting the number attached to it.<br/><br/>
@@ -58,7 +59,15 @@ io.on('connection', socket => {
 
     // listen for chatMessage from the client
     socket.on('client_Message', message => {
-        io.emit('bot_message', message);
+        
+        switch (message) {
+            case "1":
+                // Send list of menu items to client
+                io.emit('bot_message', `Here is our menu: </br></br> ${menu_list.map((item) => `<p> ${item.id}. ${item.name} - ${item.price} </p>`).join('')}`);
+                break;
+           
+
+        }
         
     })
 })
