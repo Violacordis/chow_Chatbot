@@ -13,8 +13,6 @@ This is a restaurant chatbot that offers seamless experience to users by helping
 
 ---
 
----
-
 ## Requirements
 
 - ChatBot interface would be like a chat interface.
