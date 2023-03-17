@@ -1,21 +1,37 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const session = require('express-session');
 const socketio = require('socket.io');
-const { text } = require('express');
+const menu_list = require('./menu.json');
 require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
+const io = socketio(server, {
+    cors: "*"
+});
 
 const PORT = process.env.PORT;
+
+// Set session middleware
+const sessionMiddleware = session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  });
+app.use(sessionMiddleware);
 
 // Setting up static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// convert express middleware to socket.io middleware
+const connect = (middleware) => (socket, next) => middleware(socket.request, {}, next);
+io.use(connect(sessionMiddleware));
+
 // Run when client connects
 io.on('connection', socket => {
+    console.log("A new user has connected");
     // Welcome current user
     socket.emit('bot_message', `Welcome! Great to have you here. My name is Ada. <br /><br />
     To place an order, <b>Select 1</b> 
