@@ -32,8 +32,24 @@ io.use(connect(sessionMiddleware));
 // Run when client connects
 io.on('connection', socket => {
     console.log("A new user has connected");
+
+     // Track user device
+    const userDevice = socket.request.headers["user-agent"];
+    if (userDevice) {
+        console.log(`user ${socket.id} connected`);
+        socket.request.session.save();
+    }
+
+    //track user's current order
+  let currentOrder = (socket.request.session.currentOrder = []);
+
+  //track user's order history
+  let orderHistory = (socket.request.session.orderHistory = []);
+
+  const botName = "chow_ChatBot"
+
     // Welcome current user
-    socket.emit('bot_message', `Welcome! Great to have you here. My name is Ada. <br /><br />
+    socket.emit('bot_message', `Welcome! Great to have you here. My name is ${botName}... <br/><br/> Select any of the options below by selecting the number attached to it.<br/><br/>
     To place an order, <b>Select 1</b> 
    <br />To see your current order, <b> Select 97</b>. 
    <br />To see your order history, <b>Select 98</b>. 
