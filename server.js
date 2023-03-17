@@ -24,8 +24,8 @@ io.on('connection', socket => {
    <br />To checkout your order, <b>Select 99</b>. 
    <br />To cancel, <b>Select 0</b>.`);
 
-    // listen for chatMessage
-    socket.on('chatMessage', message => {
+    // listen for chatMessage from the client
+    socket.on('client_Message', message => {
         io.emit('bot_message', message);
         
     })

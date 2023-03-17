@@ -1,4 +1,5 @@
 const chatForm = document.getElementById('chat-form');
+const msgInput = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const endChat = document.getElementById('endChat-btn');
 
@@ -21,7 +22,7 @@ chatForm.addEventListener('submit', (e) => {
         return false;
     }  
     // Emit message to server
-    socket.emit('chatMessage', message);
+    socket.emit('client_Message', message);
      // clear text input field after message is sent
     e.target.elements.msg.value = '';
     // Focus on text input field after message is sent and the field cleared
