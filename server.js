@@ -63,9 +63,22 @@ io.on('connection', socket => {
         switch (message) {
             case "1":
                 // Send list of menu items to client
-                io.emit('bot_message', `Here is our menu: </br></br> ${menu_list.map((item) => `<p> ${item.id}. ${item.name} - ${item.price} </p>`).join('')}`);
+                socket.emit('bot_message', `Here is our menu: </br></br> ${menu_list.map((item) => `<p> ${item.id}. ${item.name} - ${item.price} </p>`).join('')}`);
                 break;
-           
+            case "91":
+            case "92":
+            case "93":
+            case "94":
+            case "95":
+            case "96":
+                // Check if the id of the selected item matches the user input
+                const selectedMenuItem = menu_list.find((item) => item.id == message);
+                // Add the selected item to the current order
+                currentOrder.push(selectedMenuItem);
+                // emit message to inform user that the item has been added to the order
+                socket.emit('bot_message', `You have successfully added ${selectedMenuItem.name} to your order. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To checkout order, <b>Select 99</b>`);
+                break;
+
 
         }
         
