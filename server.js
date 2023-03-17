@@ -86,7 +86,7 @@ io.on('connection', socket => {
         // emit message to inform user that the item has been added to the order
         socket.emit(
           'bot_message',
-          `You have successfully added ${selectedMenuItem.name} to your cart. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`,
+          `You have successfully added ${selectedMenuItem.name} to your cart. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b><br/> To cancel order, <b>Select 0</b>`,
         );
         break;
 
@@ -128,7 +128,7 @@ io.on('connection', socket => {
               )
             : socket.emit(
                 'bot_message',
-                `<b>Order History<b/>: <br><br/>${orderHistory}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`,
+                `<b>Order History<b/>: <br><br/>${orderHistory}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b> <br/> To cancel order, <b>Select 0</b>`,
               );
         break;
 
