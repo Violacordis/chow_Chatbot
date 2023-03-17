@@ -48,7 +48,6 @@ io.on('connection', socket => {
   let OrderHistory = (socket.request.session.orderHistory = []);
 
   const botName = 'chow_ChatBot';
-  let switchExecuted = false;
 
   // Welcome current user
   socket.emit(
