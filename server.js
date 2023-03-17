@@ -44,7 +44,7 @@ io.on('connection', socket => {
   let currentOrder = (socket.request.session.currentOrder = []);
 
   //track user's order history
-  let orderHistory = (socket.request.session.orderHistory = []);
+  let OrderHistory = (socket.request.session.orderHistory = []);
 
   const botName = "chow_ChatBot";
   let switchExecuted = false;
@@ -76,9 +76,9 @@ io.on('connection', socket => {
                 // Add the selected item to the current order
                 currentOrder.push(selectedMenuItem);
                 // emit message to inform user that the item has been added to the order
-                socket.emit('bot_message', `You have successfully added ${selectedMenuItem.name} to your cart. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To checkout order, <b>Select 99</b>`);
+                socket.emit('bot_message', `You have successfully added ${selectedMenuItem.name} to your cart. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`);
                 break;
-                
+
             case "99":
                 // checkout order
                 if(currentOrder.length === 0) {
@@ -88,16 +88,26 @@ io.on('connection', socket => {
                 const totalPrice = currentOrder.reduce((acc, item) => acc + item.price, 0);
                 //emit message to client with total price
 
-                socket.emit('bot_message', `<b>Order Checkout<b/>: <br><br/>Your total is ${totalPrice}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To checkout order, <b>Select 99</b>`);
+                socket.emit('bot_message', `<b>Order Checkout<b/>: <br><br/>Your total is ${totalPrice}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`);
 
                 //add current order to order history
-                orderHistory.push(...currentOrder);
+                OrderHistory.push(...currentOrder);
 
                 //clear current order
                 currentOrder = [];
                 break;
 
-
+            case "98":
+                // show order history
+                let orderHistory = OrderHistory.map((item) => `<p>${item.name} - ${item.price}</p>`).join('');
+                console.log(orderHistory);
+                if(orderHistory.length === 0) {
+                    socket.emit('bot_message', `You have no order history. <br/><br/> To place an order, <b>Select 1</b>`);
+                }
+                //emit message to client with order history
+                socket.emit('bot_message', `<b>Order History<b/>: <br><br/>${orderHistory}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To check your order history, <b>Select 98</b> <br/> To checkout order, <b>Select 99</b>`);
+                break;
+                
         }
         
     })
