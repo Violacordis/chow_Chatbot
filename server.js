@@ -76,7 +76,25 @@ io.on('connection', socket => {
                 // Add the selected item to the current order
                 currentOrder.push(selectedMenuItem);
                 // emit message to inform user that the item has been added to the order
-                socket.emit('bot_message', `You have successfully added ${selectedMenuItem.name} to your order. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To checkout order, <b>Select 99</b>`);
+                socket.emit('bot_message', `You have successfully added ${selectedMenuItem.name} to your cart. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To checkout order, <b>Select 99</b>`);
+                break;
+                
+            case "99":
+                // checkout order
+                if(currentOrder.length === 0) {
+                    socket.emit('bot_message', `Your cart is empty. <br/><br/> To place an order, <b>Select 1</b>`);
+                }
+                //calculate total price of order
+                const totalPrice = currentOrder.reduce((acc, item) => acc + item.price, 0);
+                //emit message to client with total price
+
+                socket.emit('bot_message', `<b>Order Checkout<b/>: <br><br/>Your total is ${totalPrice}. <br/><br/> To place another order, <b>Select 1</b> <br/>To see items in your cart,<b>Select 97</b> <br/> To checkout order, <b>Select 99</b>`);
+
+                //add current order to order history
+                orderHistory.push(...currentOrder);
+
+                //clear current order
+                currentOrder = [];
                 break;
 
 
