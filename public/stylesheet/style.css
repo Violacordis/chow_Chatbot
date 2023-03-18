@@ -188,4 +188,8 @@ p {
   p {
     font-size: 0.9rem;
   }
+
+  .heading {
+    font-size: 1rem;
+  }
 }
