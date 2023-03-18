@@ -52,7 +52,7 @@ io.on('connection', socket => {
   // Welcome current user
   socket.emit(
     'bot_message',
-    `<b>Welcome! Great to have you here. My name is ${botName}... </b><br/><br/> Select any of the options below by selecting the number attached to it.<br/><br/>
+    `<b>Welcome! Great to have you here. My name is ${botName}... </b><br/><br/> Please select any of the options below with their respective numbers: <br/><br/>
     <p>To place an order, <b>Select 1</b> </p>
    <p><br />To see your current order, <b> Select 97</b>.</p> 
    <p><br />To see your order history, <b>Select 98</b>.</p> 
@@ -67,7 +67,7 @@ io.on('connection', socket => {
         // Send list of menu items to client
         socket.emit(
           'bot_message',
-          `<b>Here is our menu:</b> </br></br> ${menu_list
+          `<b>Here is our menu:</b> </br></br> Please select any of the options below with their respective numbers...${menu_list
             .map(item => `<p> ${item.id}. ${item.name} - ${item.price} </p>`)
             .join('')}`,
         );
