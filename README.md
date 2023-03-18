@@ -1,6 +1,6 @@
 # Chow_ChatBot
 
-This is a restaurant chatbot that offers seamless experience to users by helping them to place orders, checkout orders, view their order histories, and cancel orders.
+This is a mini restaurant chatbot that offers seamless experience to users by helping them to place orders, checkout orders, view their order histories, and cancel orders.
 
 ---
 
@@ -76,11 +76,16 @@ This is a restaurant chatbot that offers seamless experience to users by helping
 
 - [AltschoolAfrica](https://www.altschoolafrica.com/)
 
+---## Acknowledgement
+
+- [AltschoolAfrica](https://www.altschoolafrica.com/)
+
 ---
 
-## Contributor
+## Contact
 
-- Ikem Violacordis Ada
+Twitter: [@ikemviola](https://twitter.com/Ikemviola)
+Email: ikemviolacordis@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
