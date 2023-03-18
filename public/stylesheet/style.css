@@ -15,7 +15,6 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.2 rem;
   background: var(--light-color);
   margin: 0 auto;
 }
@@ -164,12 +163,12 @@ p {
 
 @media (max-width: 580px) {
   .chat-header {
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 0.8rem;
+    font-size: 0.5rem;
   }
 
   .chat-messages {
-    height: 400px;
+    height: 100vh;
     padding: 1rem;
   }
 
@@ -179,5 +178,14 @@ p {
 
   .chat-form-container input[type='text'] {
     color: #fff;
+  }
+
+  .btn {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.6rem;
+  }
+
+  p {
+    font-size: 0.9rem;
   }
 }
