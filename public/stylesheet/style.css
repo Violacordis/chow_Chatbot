@@ -165,10 +165,12 @@ p {
 @media (max-width: 580px) {
   .chat-header {
     padding: 1rem;
+    font-size: 1rem;
   }
 
   .chat-messages {
-    height: 100vh;
+    height: 400px;
+    padding: 1rem;
   }
 
   .chat-form-container {
@@ -176,9 +178,6 @@ p {
   }
 
   .chat-form-container input[type='text'] {
-    font-size: 1.2rem;
-    padding: 0.6rem;
-    height: 25px;
-    flex: 1;
+    color: #fff;
   }
 }
